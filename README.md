@@ -50,7 +50,7 @@ To begin, you'll need to start an inference server for the model you want to use
    cd /scratch/gpfs/bs6865/vllm/
    ```
 
-   **Note:** You should have read and execute permissions on the files in this directory.
+   **Note:** You should have read and execute permissions on the files in this directory. If not, please let me know.
 
 3. Find the Slurm script for your desired model and submit it as a job. For example, to use Meta's Llama3.1 8B Instruct model:
    ```
