@@ -86,9 +86,9 @@ Once your server is running, you can send queries to the model. You have two opt
 
     If this command returns not output then the port you tested is free.
 
-    **Note:** This will keep the terminal session you ran it in occupied as long as the SSH tunnel is open. This is on purpose becuase it prevents us from creating more and more port forwardings without noticing. As soon as you exit the terminal, the connection will be closed. 
+    **Note:** This will keep the terminal session you ran it in occupied as long as the SSH tunnel is open. This is on purpose because it prevents us from creating more and more port forwardings without noticing, which is likely to happen if we establish permanent tunnels in the background. As soon as you exit the terminal session, the connection will be closed. 
 
-   What is port forwarding?
+   **What is port forwarding?**
    Port forwarding is a technique that allows you to create a secure tunnel between your local machine and a remote server. In this case, it's used to access the API running on a Della GPU node from the login node you land in when use ssh into Della.
 
 3. You can now run inference using Python code executed on the Della node you ran step 1-3 on (see examples below). As mention in the Note, you need to open a new terminal window to navigate on the node given that the first window is keeping the SSH tunnel open.
