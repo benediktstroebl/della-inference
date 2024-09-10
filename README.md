@@ -14,7 +14,7 @@ Slurm is a workload manager used on many computing clusters, including Della. It
 
 ### File Storage on Della
 
-Understanding the different storage options on Della is crucial for managing your data and running jobs efficiently. Here are the main directories you'll be working with:
+Della has different file storage spaces that are connected to **all** nodes and mainly differ in their capacity and whether they have a backup or not. Here are the main spaces you'll be working with:
 
 #### Home Directory (/home/<YourNetID>)
 
@@ -36,7 +36,7 @@ Understanding the different storage options on Della is crucial for managing you
 
 ## Starting the API
 
-To begin, you'll need to start an inference server for the model you want to use. If you use the Slurm scripts I set up so far, this server will run for 24 hours by default but you can set a different time very easily.
+To begin, you'll need to start an inference server for the model you want to use. If you use the Slurm scripts I set up so far, this server will run for 24 hours by default but you can set a different time very easily by modifying the options in the header of the Slurm scripts.
 
 ### Steps to Start the API:
 
@@ -65,12 +65,14 @@ Once your server is running, you can send queries to the model. You have two opt
 
 ### Option 1: Running queries from Della directly
 
+On della-vis1 or any other node, do the following:
+
 1. Find which GPU node is running your server:
    ```
    squeue -u <your netid>
    ```
 
-2. SSH into that GPU node using port forwarding:
+2. Establish an SSH connection into that GPU node forwarding a local port to the GPU node through which we can query the server:
    ```
    ssh -N -L localhost:<choose a free port>:<node_name>:8000 bs6865@<node_name>
    ```
@@ -79,19 +81,17 @@ Once your server is running, you can send queries to the model. You have two opt
    ssh -N -L localhost:4567:della-l05g6:8000 bs6865@della-l05g6
    ```
 
-    **To check whether a port is free run:**
-    ```
-    lsof -i :<port_number>
-    ```
+   **Note:** This will keep the terminal session you ran it in occupied as long as the SSH tunnel is open. This is on purpose because it prevents us from creating more and more port forwardings without noticing, which is likely to happen if we establish permanent tunnels in the background. As soon as you exit the terminal session, the connection will be closed. 
 
-    If this command returns not output then the port you tested is free.
-
-    **Note:** This will keep the terminal session you ran it in occupied as long as the SSH tunnel is open. This is on purpose because it prevents us from creating more and more port forwardings without noticing, which is likely to happen if we establish permanent tunnels in the background. As soon as you exit the terminal session, the connection will be closed. 
+    **To check whether a port is free run:** On the Princeton Clusters we can just use the following simple command to determine a free port on the current node. Use the output in step two and replace `<choose free port>` with the determined free port.
+    ```
+    get_free_port
+    ```
 
    **What is port forwarding?**
-   Port forwarding is a technique that allows you to create a secure tunnel between your local machine and a remote server. In this case, it's used to access the API running on a Della GPU node from the login node you land in when use ssh into Della.
+   Port forwarding is a technique that allows you to create a secure tunnel between your local machine and a remote server. In this case, it's used to access the API running on a Della GPU node from the login node you land when you ssh into Della.
 
-3. You can now run inference using Python code executed on the Della node you ran step 1-3 on (see examples below). As mention in the Note, you need to open a new terminal window to navigate on the node given that the first window is keeping the SSH tunnel open.
+3. You can now run inference using Python code executed on the Della node you ran step 1-3 on (see examples below). As mentioned in the note, if you want to use the terminal you need to open a new terminal window given that the first window is keeping the SSH tunnel open.
 
 ### Option 2: Using Azure VM
 
@@ -100,7 +100,9 @@ If you're using the **platform-master** Azure VM, you can connect to the API usi
 http://localhost:<model port>/v1
 ```
 
-The model ports are set in the Slurm script. Check the Model-Ports Table in the full documentation for the correct port number. The **platform-master** VM is set up by us on Azure. We use this VM to run all evaluations for HAL. This is because we want to standardize hardware but also because Della does not support Docker out-of-the-box. Given that many evaluation harnesses of benchmarks use Docker, we opted to use Azure over Della for running evaluations. 
+**Note:** This model port is different from the one you can set if you query the API from Della directly and apply only for the Azure VM. Read further for more details.
+
+The model ports are set in the Slurm script. Check the Model-Ports Table in the full documentation for the correct port number. The **platform-master** VM is set up by us on Azure (platform-master is simply the name of the VM we set). We use this VM to run all evaluations for HAL. This is because we want to standardize hardware but also Della does not support Docker out-of-the-box. Given that many evaluation harnesses of benchmarks use Docker, we opted to use Azure over Della for running evaluations. 
 
 However, we can still use the inference API hosted on Della and query it from the Azure VM as if it would be available as an API on the internet using SSH and port forwarding again. The necessary connection is established automatically in the Slurm scripts I provided so once the Slurm job has started, we are ready to go.
 
