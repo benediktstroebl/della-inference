@@ -97,7 +97,7 @@ To begin, you'll need to start an inference server for the model you want to use
 
 Once your server is running and the SSH port forwarding is set up, you can send queries to the model using the provided endpoint. You can use either the Python example or the curl command provided in the script output to test the API.
 
-### Option 2: Using Azure VM
+### Option 2: Using Azure VM (only relevant for our group)
 
 If you're using the **platform-master** Azure VM, you can connect to the API using the endpoint:
 ```
