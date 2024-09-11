@@ -45,9 +45,9 @@ To begin, you'll need to start an inference server for the model you want to use
    ssh <YourNetID>@della-vis1.princeton.edu
    ```
 
-2. Run the Python script to submit the job and set up port forwarding. For example, to start a server that runs for 4 hours:
+2. Run the Python script to submit the job and set up port forwarding. For example, to start a server that runs for 4 hours with the `Llama-3.1-8B-Instruct` model:
    ```
-   python submit_vllm_job.py 4
+   python vllm/llama3.1_8b.py --time 4
    ```
 
    This script will:
@@ -201,6 +201,10 @@ completion = client.chat.completions.create(
 # Print the model's response
 print(completion.choices[0].message)
 ```
+
+## Adding models
+
+If you want to add new models please add a pull request and I will add them.
 
 ## Additional Notes
 
