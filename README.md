@@ -36,32 +36,7 @@ Della has different file storage spaces that are connected to **all** nodes and 
 
 ## Starting the API
 
-To begin, you'll need to start an inference server for the model you want to use. If you use the Slurm scripts I set up so far, this server will run for 24 hours by default but you can set a different time very easily by modifying the options in the header of the Slurm scripts.
-
-### Steps to Start the API:
-
-1. Connect to Della using SSH:
-   ```
-   ssh <YourNetID>@della-vis1.princeton.edu
-   ```
-
-2. Navigate to the vLLM scripts directory:
-   ```
-   cd /scratch/gpfs/bs6865/vllm/
-   ```
-
-   **Note:** You should have read and execute permissions on the files in this directory. If not, please let me know.
-
-3. Find the Slurm script for your desired model and submit it as a job. For example, to use Meta's Llama3.1 8B Instruct model:
-   ```
-   sbatch /scratch/gpfs/bs6865/vllm/llama3.1_8b_instruct.slurm
-   ```
-
-This command submits a job to Slurm, which will start a vLLM server on a GPU node of Della with the necessary resources to host the model as specified in the Slurm script.
-
-## Using the API
-
-Once your server is running, you can send queries to the model. You have two options for connecting to the API:
+To begin, you'll need to start an inference server for the model you want to use.
 
 ### Option 1: Running queries from Della directly
 
@@ -129,10 +104,12 @@ If you're using the **platform-master** Azure VM, you can connect to the API usi
 http://localhost:<model port>/v1
 ```
 
-This will be available after simply running the slurm job for the respective model in
+This will be available after simply running the Slurm job for the respective model in:
 ```
 /scratch/gpfs/bs6865/vllm/azure_link
 ```
+
+If you use the Slurm scripts I set up so far, this server will run for 24 hours by default but you can set a different time very easily by modifying the options in the header of the Slurm scripts.
 
 **Note:** This model port is different from the one you set if you query the API from Della directly (Option 1) and apply only for the Azure VM. Read further for more details.
 
