@@ -28,13 +28,5 @@ vllm serve meta-llama/Meta-Llama-3.1-70B-Instruct --tensor-parallel-size 4 &
 # Wait for the server to start (adjust sleep time if needed)
 sleep 10
 
-# Print information about how to access the API
-echo "API server is running on node $(hostname)"
-echo "To access the API from della-vis1, use the following command:"
-echo "1. Determine a port (<port>) on your local machine with 'get_free_port'"
-echo "2. Run the following command on your local machine:"
-echo "ssh -N -L localhost:<port>:$(hostname):8000 $(whoami)@$(hostname)"
-echo "Then, you can access the API at http://localhost:<port>/v1"
-
 # Keep the script running
 wait
