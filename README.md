@@ -34,6 +34,17 @@ Della has different file storage spaces that are connected to **all** nodes and 
 - **Quota**: Varies by project.
 - **Backup**: Yes, but less frequently than home directories.
 
+## Supported Models
+
+This inference API currently supports the following models:
+
+| Model Name| Hugging Face Link |
+|------------|-------------------|
+| Meta Llama-3.1-70B-Instruct | [🤗 Model](https://huggingface.co/meta-llama/Meta-Llama-3.1-70B-Instruct) |
+| Meta Llama-3.1-8B-Instruct | [🤗 Model](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct) |
+
+To request support for additional models, please open an issue or submit a pull request.
+
 ## Setup
 
 1. Clone this repository
