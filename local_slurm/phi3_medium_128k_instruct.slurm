@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-#SBATCH --job-name=vllm_llama_3.1_8b
-#SBATCH --output=vllm-llama-3.1-8b-%j.log
+#SBATCH --job-name=vllm_phi_3_medium_128k_instruct
+#SBATCH --output=vllm-phi_3_medium_128k_instruct-%j.log
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --time=12:00:00
@@ -23,7 +23,7 @@ export HF_HOME="/scratch/gpfs/bs6865/della-inference/_models"
 FREE_PORT=$(get_free_port)
 
 # Start vllm serve
-vllm serve meta-llama/Meta-Llama-3.1-8B-Instruct --tensor-parallel-size 2 &
+vllm serve microsoft/Phi-3-medium-128k-instruct --tensor-parallel-size 2 &
 
 
 # Keep the script running
