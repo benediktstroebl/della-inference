@@ -37,10 +37,10 @@ Della has different file storage spaces that are connected to **all** nodes and 
 ## Setup
 
 1. Clone this repository
-  ````
-  git clone https://github.com/benediktstroebl/della-inference.git
-  cd della-inference
-  ```
+    ```
+    git clone https://github.com/benediktstroebl/della-inference.git
+    cd della-inference
+    ```
 
 2. Load the Anaconda module if not yet loaded:
    ```
