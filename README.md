@@ -153,7 +153,7 @@ If you use the Slurm scripts I set up so far, this server will run for 24 hours 
 
 **Note:** This model port is different from the one you set if you query the API from Della directly (Option 1) and apply only for the Azure VM. Read further for more details.
 
-The model ports are set in the Slurm script. Check the Model-Ports Table in the full documentation for the correct port number. The **platform-master** VM is set up by us on Azure (platform-master is simply the name of the VM we set). We use this VM to run all evaluations for HAL. This is because we want to standardize hardware but also Della does not support Docker out-of-the-box. Given that many evaluation harnesses of benchmarks use Docker, we opted to use Azure over Della for running evaluations. 
+The model ports are set in the Slurm script. Check the model ports table below for the correct port number. The **platform-master** VM is set up by us on Azure (platform-master is simply the name of the VM we set). We use this VM to run all evaluations for HAL. This is because we want to standardize hardware but also Della does not support Docker out-of-the-box. Given that many evaluation harnesses of benchmarks use Docker, we opted to use Azure over Della for running evaluations. 
 
 However, we can still use the inference API hosted on Della and query it from the Azure VM as if it would be available as an API on the internet using SSH and port forwarding again. The necessary connection is established automatically in the Slurm scripts I provided so once the Slurm job has started, we are ready to go.
 
