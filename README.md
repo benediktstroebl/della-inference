@@ -34,6 +34,35 @@ Della has different file storage spaces that are connected to **all** nodes and 
 - **Quota**: Varies by project.
 - **Backup**: Yes, but less frequently than home directories.
 
+## Setup
+
+1. Clone this repository
+  ````
+  git clone https://github.com/benediktstroebl/della-inference.git
+  cd della-inference
+  ```
+
+2. Load the Anaconda module if not yet loaded:
+   ```
+   module load anaconda3/2023.9
+   ```
+
+3. Create a new conda environment (please keep using `vllm` as the env name):
+   ```
+   conda create -n vllm python=3.10 -y
+   ```
+
+4. Activate the new environment:
+   ```
+   conda activate vllm
+   ```
+
+5. Install the required packages using pip and the requirements.txt file:
+   ```
+   pip install -r requirements.txt
+   ```
+
+
 ## Starting the API
 
 To begin, you'll need to start an inference server for the model you want to use.
