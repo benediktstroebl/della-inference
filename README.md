@@ -42,6 +42,8 @@ This inference API currently supports the following models:
 |------------|-------------------|
 | Meta Llama-3.1-70B-Instruct | [🤗 Model](https://huggingface.co/meta-llama/Meta-Llama-3.1-70B-Instruct) |
 | Meta Llama-3.1-8B-Instruct | [🤗 Model](https://huggingface.co/meta-llama/Meta-Llama-3.1-8B-Instruct) |
+| microsoft/Phi-3-mini-128k-instruct | [🤗 Model](https://huggingface.co/microsoft/Phi-3-mini-128k-instruct) |
+| microsoft/Phi-3-medium-128k-instruct | [🤗 Model](https://huggingface.co/microsoft/Phi-3-medium-128k-instruct) |
 
 To request support for additional models, please open an issue or submit a pull request.
 
