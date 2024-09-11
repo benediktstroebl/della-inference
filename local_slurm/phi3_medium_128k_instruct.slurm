@@ -4,7 +4,7 @@
 #SBATCH --output=vllm-llama-3.1-8b-%j.log
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --time=24:00:00
+#SBATCH --time=12:00:00
 #SBATCH --cpus-per-gpu=12
 #SBATCH --gres=gpu:2
 #SBATCH --mem-per-gpu=16G
@@ -19,5 +19,13 @@ conda activate vllm
 export HF_HUB_OFFLINE=1
 export HF_HOME="/scratch/gpfs/bs6865/della-inference/_models"
 
-# Start vllm serve in the background and establish port forwarding to platform-master Azure VM
-vllm serve meta-llama/Meta-Llama-3.1-8B-Instruct --tensor-parallel-size 2 & ssh -i ~/.ssh/platform-master_key.pem -J bs6865@della-vis1 -R 51.8.97.78:6789:localhost:8000 -T -o BatchMode=yes azureuser@51.8.97.78 "echo 'SSH tunnel established'; sleep infinity" & wait
+# Find a free port
+FREE_PORT=$(get_free_port)
+
+# Start vllm serve
+vllm serve meta-llama/Meta-Llama-3.1-8B-Instruct --tensor-parallel-size 2 &
+
+
+# Keep the script running
+wait
+
