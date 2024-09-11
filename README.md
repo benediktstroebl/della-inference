@@ -76,7 +76,7 @@ To begin, you'll need to start an inference server for the model you want to use
 
 2. Run the Python script to submit the job and set up port forwarding. For example, to start a server that runs for 4 hours with the `Llama-3.1-8B-Instruct` model:
    ```
-   python vllm/llama3.1_8b.py --time 4
+   python llama3.1_8b.py --time 4
    ```
 
    This script will:
@@ -135,7 +135,7 @@ http://localhost:<model port>/v1
 
 This will be available after simply running the Slurm job for the respective model in:
 ```
-/scratch/gpfs/bs6865/vllm/azure_link
+/scratch/gpfs/bs6865/della-inference/azure_link
 ```
 
 If you use the Slurm scripts I set up so far, this server will run for 24 hours by default but you can set a different time very easily by modifying the options in the header of the Slurm scripts.
