@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+#SBATCH --job-name={{ job_name }}
+#SBATCH --output={{ output }}
+#SBATCH --nodes={{ nodes }}
+#SBATCH --ntasks-per-node={{ ntasks_per_node }}
+#SBATCH --time={{ time }}
+#SBATCH --cpus-per-gpu={{ cpus_per_gpu }}
+#SBATCH --gres={{ gres }}
+#SBATCH --mem-per-gpu={{ mem_per_gpu }}
+#SBATCH --constraint={{ constraint }}
+#SBATCH --mail-type={{ mail_type }}
+#SBATCH --mail-user={{ mail_user }}
+
+module purge
+module load anaconda3/2023.9
+conda activate vllm
+
+export HF_HUB_OFFLINE=1
+export HF_HOME="/scratch/gpfs/bs6865/della-inference/_models"
+
+# Start vllm serve
+vllm serve {{ serve }} --tensor-parallel-size {{ tensor_parallel_size }} & ssh -i ~/.ssh/platform-master_key.pem -J $(whoami)@della-vis1 -R 51.8.97.78:{{ azure_port }}:localhost:8000 -T -o BatchMode=yes {{ azure_user }}@51.8.97.78 "echo 'SSH tunnel established'; sleep infinity" & wait

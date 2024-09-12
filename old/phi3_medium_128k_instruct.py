@@ -56,7 +56,7 @@ curl http://localhost:{port}/v1/chat/completions \\
   -H "Content-Type: application/json" \\
   -H "Authorization: Bearer token-abc123" \\
   -d '{{
-    "model": "microsoft/Phi-3-mini-128k-instruct",
+    "model": "microsoft/Phi-3-medium-128k-instruct",
     "messages": [
       {{"role": "system", "content": "Respond friendly to the user."}},
       {{"role": "user", "content": "Hello World!"}}
@@ -72,7 +72,7 @@ def main():
     parser.add_argument("--time", type=int, help="Time for the Slurm job in hours")
     args = parser.parse_args()
 
-    slurm_script = '/scratch/gpfs/bs6865/della-inference/local_slurm/phi3_mini_128k_instruct.slurm'  # Update this with your Slurm script name
+    slurm_script = f'/scratch/gpfs/{netid}/della-inference/local_slurm/phi3_medium_128k_instruct.slurm'  # Update this with your Slurm script name
     
     print(f"Submitting Slurm job with time of {args.time} hours...")
     job_id = submit_slurm_job(slurm_script, args.time)

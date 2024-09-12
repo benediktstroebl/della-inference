@@ -1,0 +1,12 @@
+defaults:
+  - model_configs: Meta-Llama-3.1-8B-Instruct #Meta-Llama-3.1-8B-Instruct, Meta-Llama-3.1-70B-Instruct, Phi-3-mini-128k-instruct, Phi-3-medium-128k-instruct
+
+# determine if you want to run it on Azure (changes slurm)
+azure: True
+# how many hours to run for
+time: 1
+
+# most likely ignore (edit only if you change templates)
+slurm_dir: templates
+slurm_fname: slurm_template.txt
+slurm_azure_fname: slurm_azure_template.txt

@@ -87,9 +87,30 @@ To begin, you'll need to start an inference server for the model you want to use
    ssh <YourNetID>@della-vis1.princeton.edu
    ```
 
-2. Run the Python script to submit the job and set up port forwarding. For example, to start a server that runs for 4 hours with the `Llama-3.1-8B-Instruct` model:
+2. Edit config file to determine which job you want to run.
+
+`config.yaml` looks like, this is where you'll be defining which model you want to use and how long to set it up for.
+
+```yaml
+defaults:
+  - model_configs: Meta-Llama-3.1-8B-Instruct #Meta-Llama-3.1-8B-Instruct, Meta-Llama-3.1-70B-Instruct, Phi-3-mini-128k-instruct, Phi-3-medium-128k-instruct
+
+# determine if you want to run it on Azure (changes slurm)
+azure: True
+# how many hours to run for
+time: 1
+
+
+# most likely ignore (edit only if you change templates)
+slurm_dir: templates
+slurm_fname: slurm_template.txt
+slurm_azure_fname: slurm_azure_template.txt
+```
+
+
+3. Run the Python script to submit the job and set up port forwarding. For example, to start a server that runs for 4 hours:
    ```
-   python llama3.1_8b.py --time 4
+   python run.py
    ```
 
    This script will:
@@ -97,6 +118,16 @@ To begin, you'll need to start an inference server for the model you want to use
    - Wait for the job to start running
    - Set up SSH port forwarding from a free local port to the remote port on the compute node
    - Display information about how to access the API, including an example curl command to try out the API in the terminal. Other examples are included in `example_inference_calls.py`
+
+Note that [hydra](https://hydra.cc/) (the software we use to setup configs) also lets you adjust parameters from the command line. [Here](https://hydra.cc/docs/advanced/override_grammar/basic/) is there basic override syntax.
+
+In other words, you can run it like this: 
+
+   ```
+   python run.py model_configs=Phi-3-mini-128k-instruct ++time=12 
+   ```
+
+This will change the model to `Phi-3 mini` and keep the server running for 12 hours. 
 
 4. The script will output colorized information about the job submission, SSH port forwarding, and how to use the API. It will look similar to this:
 
@@ -134,6 +165,15 @@ To begin, you'll need to start an inference server for the model you want to use
    Port forwarding is a technique that allows you to create a secure tunnel between your local machine and a remote server. In this case, it's used to access the API running on a Della GPU node from the login node you land when you ssh into Della.
 
 5. You can now use the provided API endpoint in your code to interact with the model. The SSH port forwarding will remain active until you press Ctrl+C to exit the script. Note that the job will keep running and you can open a new ssh connection to access the API again. If you want to end the job, please do so via, e.g., your MyDella dashboard.
+
+6. Note, in case you accidentally close the port forwarding simply run 
+
+```sh
+ssh_command = f"ssh -N -L localhost:{local_port}:{node}:{remote_port} {username}@{node}"
+```
+
+Where `local_port` can be anything, `node` is your gpu node, `remote_port` is 8000, and `username` is your NetID. 
+
 
 #### Using the API
 

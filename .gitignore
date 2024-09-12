@@ -1,3 +1,6 @@
 .env
 _models/
 *.log
+vllm*
+outputs/*
+old/

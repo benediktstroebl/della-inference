@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+#SBATCH --job-name={{ job_name }}
+#SBATCH --output={{ output }}
+#SBATCH --nodes={{ nodes }}
+#SBATCH --ntasks-per-node={{ ntasks_per_node }}
+#SBATCH --time={{ time }}
+#SBATCH --cpus-per-gpu={{ cpus_per_gpu }}
+#SBATCH --gres={{ gres }}
+#SBATCH --mem-per-gpu={{ mem_per_gpu }}
+#SBATCH --constraint={{ constraint }}
+#SBATCH --mail-type={{ mail_type }}
+#SBATCH --mail-user={{ mail_user }}
+
+module purge
+module load anaconda3/2023.9
+conda activate vllm
+
+export HF_HUB_OFFLINE=1
+export HF_HOME="/scratch/gpfs/bs6865/della-inference/_models"
+
+# Find a free port
+FREE_PORT=$(get_free_port)
+
+# Start vllm serve
+vllm serve {{ serve }} --tensor-parallel-size {{ tensor_parallel_size }}
+
+# Wait for the server to start (adjust sleep time if needed)
+sleep 10
+
+# Keep the script running
+wait

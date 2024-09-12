@@ -1,0 +1,15 @@
+defaults:
+  - defaults
+  - _self_
+
+job_name: vllm_phi_3_mini_128k_instruct
+output: vllm-phi_3_mini_128k_instruct-%j.log
+serve: microsoft/Phi-3-mini-128k-instruct
+
+# compute
+tensor_parallel_size: 2
+mem_per_gpu: 16G
+gres: gpu:2
+
+# azure port
+azure_port: 33986

@@ -49,30 +49,14 @@ def setup_ssh_port_forwarding(node, remote_port, local_port):
 
 def print_usage_examples(port):
     print("\n=====\nTRY IT OUT AND PASTE THE FOLLOWING IN A TERMINAL WINDOW:")
-#     python_example = f"""
-# Python Example:
-# from openai import OpenAI
-# client = OpenAI(
-#     base_url="http://localhost:{port}/v1",
-#     api_key="token-abc123",
-# )
 
-# completion = client.chat.completions.create(
-#   model="meta-llama/Meta-Llama-3.1-8B-Instruct",
-#   messages=[
-#     {{"role": "system", "content": "Respond friendly to the user."}},
-#     {{"role": "user", "content": "Hello World!"}}
-#   ]
-# )
-# print(completion.choices[0].message)
-# """
 
     curl_example = f"""
 curl http://localhost:{port}/v1/chat/completions \\
   -H "Content-Type: application/json" \\
   -H "Authorization: Bearer token-abc123" \\
   -d '{{
-    "model": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+    "model": "meta-llama/Meta-Llama-3.1-70B-Instruct",
     "messages": [
       {{"role": "system", "content": "Respond friendly to the user."}},
       {{"role": "user", "content": "Hello World!"}}
@@ -80,7 +64,6 @@ curl http://localhost:{port}/v1/chat/completions \\
   }}'
 """
 
-    # print(python_example)
     print(curl_example)
     print("=====\n\n")
 
@@ -89,7 +72,7 @@ def main():
     parser.add_argument("--time", type=int, help="Time for the Slurm job in hours")
     args = parser.parse_args()
 
-    slurm_script = '/scratch/gpfs/bs6865/vllm/local_slurm/llama3.1_8b_instruct.slurm'  # Update this with your Slurm script name
+    slurm_script = f'/scratch/gpfs/{netid}/della-inference/local_slurm/llama3.1_70b_instruct.slurm'  # Update this with your Slurm script name
     
     print(f"Submitting Slurm job with time of {args.time} hours...")
     job_id = submit_slurm_job(slurm_script, args.time)
