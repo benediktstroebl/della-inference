@@ -169,7 +169,7 @@ This will change the model to `Phi-3 mini` and keep the server running for 12 ho
 6. Note, in case you accidentally close the port forwarding simply run 
 
 ```sh
-ssh_command = f"ssh -N -L localhost:{local_port}:{node}:{remote_port} {username}@{node}"
+ssh -N -L localhost:{local_port}:{node}:{remote_port} {username}@{node}
 ```
 
 Where `local_port` can be anything, `node` is your gpu node, `remote_port` is 8000, and `username` is your NetID. 
