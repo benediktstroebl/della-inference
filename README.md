@@ -179,6 +179,34 @@ Where `local_port` can be anything, `node` is your gpu node, `remote_port` is 80
 
 Once your server is running and the SSH port forwarding is set up, you can send queries to the model using the provided endpoint. You can use either the Python example or the curl command provided in the script output to test the API.
 
+### Adding new models
+
+The code makes it reasonably simple to add a new model. To add a model all you have to do is add a new `.yaml` file in `model_configs` with model specifications.
+
+```yaml
+defaults:
+  - defaults
+  - _self_
+
+job_name: vllm_llama_3.1_70b
+output: vllm-llama-3.1-70b-%j.log
+serve: meta-llama/Meta-Llama-3.1-70B-Instruct
+
+# compute
+tensor_parallel_size: 4
+mem_per_gpu: 16G
+gres: gpu:4
+
+# azure port
+azure_port: 6778
+```
+
+You will want to edit the job name, output, the model to serve, and the number of GPUs. 
+
+Note: The list of available models can be found at [vllm](https://docs.vllm.ai/en/latest/models/supported_models.html).
+
+
+
 ### Option 2: Using Azure VM (only relevant for our group)
 
 If you're using the **platform-master** Azure VM, you can connect to the API using the endpoint:
