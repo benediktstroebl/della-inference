@@ -97,15 +97,17 @@ defaults:
 
 # determine if you want to run it on Azure (changes slurm)
 azure: True
+azure_user: ??? # add your azure user
 # how many hours to run for
 time: 1
-
 
 # most likely ignore (edit only if you change templates)
 slurm_dir: templates
 slurm_fname: slurm_template.txt
 slurm_azure_fname: slurm_azure_template.txt
 ```
+
+**For Azure users: change your azure_user to the username on your account.**
 
 
 3. Run the Python script to submit the job and set up port forwarding. For example, to start a server that runs for 4 hours:

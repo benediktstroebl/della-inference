@@ -7,6 +7,7 @@ time: 4
 ### DO NOT CHANGE THE BELOW UNLESS YOU KNOW WHAT YOU ARE DOING ###
 # determine if you want to run it on Azure (changes slurm)
 azure: False
+azure_user: null # NOTE: !!! add your azure user !!!
 # most likely ignore (edit only if you change templates)
 slurm_dir: templates
 slurm_fname: slurm_template.txt

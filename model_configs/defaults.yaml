@@ -1,11 +1,11 @@
 job_name: ???
 output: ???
-tensor_parallel_size: ??? # not exactly sure what this is for
+tensor_parallel_size: ???
 
 # nodes
 nodes: 1
 ntasks_per_node: 1
-time: "24:00:00"
+time: "12:00:00"
 
 # compute
 cpus_per_gpu: 12
@@ -13,7 +13,7 @@ gres: gpu:2
 mem_per_gpu: 16G
 constraint: gpu80
 
-azure_user: azureuser # you'll know if this is applicable. if you have to ask, it's not.
+azure_user: ${azure_user} # you'll know if this is applicable. if you have to ask, it's not.
 
 # additional commands
 mail_type: fail
