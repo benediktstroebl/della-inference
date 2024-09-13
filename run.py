@@ -98,7 +98,7 @@ curl http://localhost:{port}/v1/chat/completions \\
 def main(cfg: DictConfig):
     time_ = cfg['time']
     slurm_script, slurm_path = convert_yaml_to_slurm(cfg)
-
+    print(slurm_script)
     print(f"Submitting Slurm job with time of {time_} hours...")
     job_id = submit_slurm_job(slurm_script, time_, slurm_path)
     print(f"Job submitted with ID: {job_id}")

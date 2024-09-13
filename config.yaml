@@ -3,6 +3,7 @@ defaults:
 
 # determine if you want to run it on Azure (changes slurm)
 azure: True
+azure_user: ??? # add your azure user
 # how many hours to run for
 time: 1
 

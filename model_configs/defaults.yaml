@@ -13,7 +13,7 @@ gres: gpu:2
 mem_per_gpu: 16G
 constraint: gpu80
 
-azure_user: venia # you'll know if this is applicable. if you have to ask, it's not.
+azure_user: ${azure_user} # you'll know if this is applicable. if you have to ask, it's not.
 
 # additional commands
 mail_type: fail
