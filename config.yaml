@@ -1,12 +1,13 @@
 defaults:
   - model_configs: Meta-Llama-3.1-8B-Instruct #Meta-Llama-3.1-8B-Instruct, Meta-Llama-3.1-70B-Instruct, Phi-3-mini-128k-instruct, Phi-3-medium-128k-instruct
 
-# determine if you want to run it on Azure (changes slurm)
-azure: True
-azure_user: ??? # add your azure user
-# how many hours to run for
-time: 1
+# how many hours to keep the API server running for (increasing this will dramatically increase wait time)
+time: 4
 
+### DO NOT CHANGE THE BELOW UNLESS YOU KNOW WHAT YOU ARE DOING ###
+# determine if you want to run it on Azure (changes slurm)
+azure: False
+azure_user: null # NOTE: !!! add your azure user !!!
 # most likely ignore (edit only if you change templates)
 slurm_dir: templates
 slurm_fname: slurm_template.txt
