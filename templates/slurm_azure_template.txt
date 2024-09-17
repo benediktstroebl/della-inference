@@ -20,4 +20,4 @@ export HF_HUB_OFFLINE=1
 export HF_HOME="/scratch/gpfs/bs6865/della-inference/_models"
 
 # Start vllm serve
-vllm serve {{ serve }} --tensor-parallel-size {{ tensor_parallel_size }} & ssh -i ~/.ssh/platform-master_key.pem -J $(whoami)@della-vis1 -R 51.8.97.78:{{ azure_port }}:localhost:8000 -T -o BatchMode=yes {{ azure_user }}@51.8.97.78 "echo 'SSH tunnel established'; sleep infinity" & wait
+vllm serve {{ serve }} --tensor-parallel-size {{ tensor_parallel_size }} --quantization {{ quantization }} & ssh -i ~/.ssh/platform-master_key.pem -J $(whoami)@della-vis1 -R 51.8.97.78:{{ azure_port }}:localhost:8000 -T -o BatchMode=yes {{ azure_user }}@51.8.97.78 "echo 'SSH tunnel established'; sleep infinity" & wait

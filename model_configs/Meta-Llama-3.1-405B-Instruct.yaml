@@ -5,6 +5,7 @@ defaults:
 job_name: vllm_llama_3.1_405b
 output: vllm-llama-3.1-405b-%j.log
 serve: meta-llama/Meta-Llama-3.1-405B-Instruct
+quantization: fp8
 
 # compute
 tensor_parallel_size: 8

@@ -23,7 +23,7 @@ export HF_HOME="/scratch/gpfs/bs6865/della-inference/_models"
 FREE_PORT=$(get_free_port)
 
 # Start vllm serve
-vllm serve {{ serve }} --tensor-parallel-size {{ tensor_parallel_size }}
+vllm serve {{ serve }} --tensor-parallel-size {{ tensor_parallel_size }} --quantization {{ quantization }}
 
 # Wait for the server to start (adjust sleep time if needed)
 sleep 10

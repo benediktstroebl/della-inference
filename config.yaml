@@ -4,10 +4,13 @@ defaults:
 # how many hours to keep the API server running for (increasing this will dramatically increase wait time)
 time: 4
 
+# to run bigger models we will require to use the pli cluster
+use_pli: True # set to True if you want to use the PLI cluster
+
 ### DO NOT CHANGE THE BELOW UNLESS YOU KNOW WHAT YOU ARE DOING ###
 # determine if you want to run it on Azure (changes slurm)
-azure: False
-azure_user: null # NOTE: !!! add your azure user !!!
+use_azure: False
+azure_user: venia # NOTE: !!! add your azure user !!!
 # most likely ignore (edit only if you change templates)
 slurm_dir: templates
 slurm_fname: slurm_template.txt

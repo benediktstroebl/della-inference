@@ -1,6 +1,7 @@
 job_name: ???
 output: ???
 tensor_parallel_size: ???
+quantization: None
 
 # nodes
 nodes: 1
