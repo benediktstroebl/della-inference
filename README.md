@@ -237,6 +237,7 @@ When accessing the API from the platform-master Azure VM, each model is assigned
 |-------|------|
 | meta-llama/Meta-Llama-3.1-8B-Instruct | 6789 |
 | meta-llama/Meta-Llama-3.1-70B-Instruct | 6778 |
+| meta-llama/Meta-Llama-3.1-405B-Instruct | 6779 |
 | microsoft/Phi-3-mini-128k-instruct | 33986 |
 | microsoft/Phi-3-small-128k-instruct | 27260 |
 | microsoft/Phi-3-medium-128k-instruct | 35250 |
