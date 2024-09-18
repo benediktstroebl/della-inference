@@ -10,7 +10,7 @@ quantization: fp8
 # compute
 tensor_parallel_size: 8
 mem_per_gpu: 16G
-gres: gpu:h100:8
+gres: gpu:8
 
 # azure port
 azure_port: 6779
