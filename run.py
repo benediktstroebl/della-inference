@@ -20,6 +20,7 @@ def submit_slurm_job(slurm_script: str, runtime: str, slurm_path: str):
     with open(temp_script, 'w') as file:
         file.write(modified_script)
 
+    print(f"Submitting Slurm job with script:\n{modified_script}")
     # Submit the job and get the job ID
     result = subprocess.run(['sbatch', temp_script], capture_output=True, text=True)
 
