@@ -28,7 +28,7 @@ def convert_yaml_to_slurm(cfg: DictConfig):
 # just for testing
 @hydra.main(version_base=None, config_path='.', config_name='config')
 def main(cfg: DictConfig):
-    print(convert_yaml_to_slurm(cfg))
+    convert_yaml_to_slurm(cfg)
 
 
 if __name__ == '__main__':
